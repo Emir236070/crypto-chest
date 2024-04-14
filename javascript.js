@@ -3,9 +3,10 @@ let boxs = document.querySelectorAll(".boxes");
 let img_2 = document.querySelectorAll(".img-2");
 let p_points = document.querySelector("#p-points");
 let claim = document.querySelector("#claim");
-let connect_metamask = document.querySelector("#connect-metamask");
-
+let connect_wallet = document.querySelector("#connect-wallet");
+let wallet_address = document.querySelector("#wallet-address")
 let li1 = document.querySelector("#li1")
+
 let img1 = document.querySelector("#img1");
 let img2 = document.querySelector("#img2");
 let img3 = document.querySelector("#img3");
@@ -14,7 +15,7 @@ let keys = 3;
 let sp16 = document.querySelector("#sp16");
 let sp17 = document.querySelector("#sp17");
 
-// Determines treasure numbers
+// Determines treasure numbers 
 let moneyed_box1 = Math.floor(Math.random() * 10);
 let moneyed_box3 = Math.floor(Math.random() * 10);
 let moneyed_box2 = Math.floor(Math.random() * 10);
@@ -35,7 +36,25 @@ window.onload = function () {
     }
     
 }
-       // Clicked Box
+       // When the connect_wallet button is clicked
+       connect_wallet.addEventListener("click", function () {
+        // Is there a wallet plugin?
+        if (window.ethereum) {
+        // if yes
+
+        // Connect Wallet
+        let account;
+        ethereum.request({method: 'eth_requestAccounts'}).then(accounts => {
+            account = accounts[0];
+            // Do Style
+            connect_wallet.innerHTML="Connected";
+            connect_wallet.style.background="white"
+            connect_wallet.style.color="#3b3b3b"
+            connect_wallet.style.border="4px solid lightgray"
+            wallet_address.innerHTML=account;
+        });
+        
+        // Clicked Box
         for (let i = 0; i < boxs.length; i++) {
             boxs[i].addEventListener("click", function () {
                 if (i == moneyed_box1 && keys > 0) {
@@ -145,16 +164,20 @@ window.onload = function () {
                             
                             if (boxs[moneyed_box1].hasAttribute("disabled") || boxs[moneyed_box2].hasAttribute("disabled") || boxs[moneyed_box3].hasAttribute("disabled")) {
                                 // If one of the 3 treasures is correct
+
+                                // Changes the span on the results screen
                                 sp17.innerHTML="Won";
 
                                 // Change the content of the claim button
-                                claim.innerHTML="Claim Reward"
+                                claim.innerHTML="Claim Reward";
                             } else {
                                 // If all 3 are wrong
+
+                                // Changes the span on the results screen
                                 sp17.innerHTML="Lost";
 
                                 // Change the content of the claim button
-                                claim.innerHTML="Ok"
+                                claim.innerHTML="Ok";
                             }
                         } 
                     
@@ -172,3 +195,8 @@ window.onload = function () {
                     }
                 })
             }
+        } else {
+            // if not
+            alert("Please Download Metamask Extension")
+        }
+    })
