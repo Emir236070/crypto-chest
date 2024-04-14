@@ -43,11 +43,11 @@ body {
 }
 
 #main-counter {
-    width: 350px;
+    width: 1300px;
     height: 100px;
     justify-content: center;
     border: 3px solid lightgray;
-    margin: 0 0 0 480px;
+    margin: 0 0 0 0;
     background: gray;
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@ body {
     width: 100px;
 }
 
-#start {
+#claim {
     color: white;
     font-size: 30px;
     outline: none;
@@ -92,8 +92,13 @@ body {
     width: 250px;
 }
 
+/*
+
 #inner {
+
 }
+
+*/
 
 #p1 {
     color: white;
@@ -108,7 +113,7 @@ body {
 .img-1 {
     position: absolute;
     position: relative;
-    right: -0px;
+    right: 0px;
     border-radius: 50%;
 }
 
@@ -148,4 +153,24 @@ body {
 
 #sp16 {
         display: none;
+}
+
+#h1-2 {
+    position: absolute;
+    margin-bottom: 875px;
+    padding: 22px;
+    transition: 0.25s;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#h1-2:hover {
+    box-shadow: 0 0 30px 10px;
+
+}
+
+#a1 {
+    text-decoration: none;
+    color: black;
 }
