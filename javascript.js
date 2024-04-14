@@ -1,10 +1,14 @@
+// Setup
 let boxs = document.querySelectorAll(".boxes");
 let img_2 = document.querySelectorAll(".img-2");
 let p_points = document.querySelector("#p-points");
-let start = document.querySelector("#start");
+let claim = document.querySelector("#claim");
+let connect_metamask = document.querySelector("#connect-metamask");
 
 let li1 = document.querySelector("#li1")
+// Number of keys
 let keys = 3;
+
 let img1 = document.querySelector("#img1");
 let img2 = document.querySelector("#img2");
 let img3 = document.querySelector("#img3");
@@ -17,88 +21,156 @@ let moneyed_box3 = Math.floor(Math.random() * 10);
 let moneyed_box2 = Math.floor(Math.random() * 10);
 let finish_window = document.querySelector("#x");
 
-
-
+console.log(window.ethereum);
+// Determines treasure numbers
 window.onload = function () {
 
     while (moneyed_box1 == moneyed_box2 || moneyed_box1 == moneyed_box3 || moneyed_box2 == moneyed_box3) {
+        // Treasure 1
         moneyed_box1 = Math.floor(Math.random() * 10);
-        moneyed_box3 = Math.floor(Math.random() * 10);
+
+        // Treasure 2
         moneyed_box2 = Math.floor(Math.random() * 10);
+        
+        // Treasure 3
+        moneyed_box3 = Math.floor(Math.random() * 10);
     }
     
 }
-for (let i = 0; i < boxs.length; i++) {
-    boxs[i].addEventListener("click", function () {
-            if (i == moneyed_box1 && keys > 0) {
-            // console.log("Its True, You Won 10 Dollars");
-               boxs[i].innerHTML="Its True, You Won 10 Dollars";
-               boxs[i].setAttribute("disabled","")
-               boxs[i].style.cursor="defult";
-               img_2[i].setAttribute("src","")
-               keys--;
-            } else if (i == moneyed_box2 && keys > 0) {
-            //  console.log("Its True, You Won NFT");
-                boxs[i].innerHTML="Its True, You Won NFT";
-                boxs[i].setAttribute("disabled","")
-                boxs[i].style.cursor="defult";
-                img_2[i].setAttribute("src","")
-                keys--;
-            } else if (i == moneyed_box3 && keys > 0) {
-            //  console.log("Its True, You Won 1.000 Coins");
-                boxs[i].innerHTML="Its True, You Won 1.000 Coins";
-                boxs[i].setAttribute("disabled","")
-                boxs[i].style.cursor="defult";
-                img_2[i].setAttribute("src","")
-                keys--;
-            } else if(keys > 0){
-            //  console.log("Its False");
-                boxs[i].innerHTML="Empty";
-                img_2[i].setAttribute("src","")
-                boxs[i].setAttribute("disabled","")
-                boxs[i].style.cursor="defult";
-                img_2[i].setAttribute("src","")
-                keys--;
+       // Clicked Box
+        for (let i = 0; i < boxs.length; i++) {
+            boxs[i].addEventListener("click", function () {
+                if (i == moneyed_box1 && keys > 0) {
+                       // 1. When you know the box correctly
+
+                       // Change the text of the box
+                       boxs[i].innerHTML="Its True, You Won 10 Dollars";
+
+                       // Make untouchable
+                       boxs[i].setAttribute("disabled","")
+
+                       // Change mouse cursor
+                       boxs[i].style.cursor="defult";
+
+                       // Remove Chest Image
+                       img_2[i].setAttribute("src","")
+
+                       // Reduce Number of Keys
+                       keys--;
+                    } else if (i == moneyed_box2 && keys > 0) {
+                       // 2. When you know the box correctly
+
+                       // Change the text of the box
+                       boxs[i].innerHTML="Its True, You Won NFT";
+
+                       // Make untouchable
+                       boxs[i].setAttribute("disabled","")
+
+                       // Change mouse cursor
+                       boxs[i].style.cursor="defult";
+
+                       // Remove Chest Image
+                       img_2[i].setAttribute("src","")
+
+                        // Reduce Number of Keys
+                        keys--;
+                    } else if (i == moneyed_box3 && keys > 0) {
+                        // 3. When you know the box correctly
+
+                        // Change the text of the box
+                        boxs[i].innerHTML="Its True, You Won 1.000 Coins";
+
+                        // Make untouchable
+                        boxs[i].setAttribute("disabled","")
+
+                        // Change mouse cursor
+                        boxs[i].style.cursor="defult";
+
+                        // Remove Chest Image
+                        img_2[i].setAttribute("src","")
+
+                        // Reduce Number of Keys
+                        keys--;
+                    } else if(keys > 0){
+                    //  When we pick the wrong box
+
+                        // Change the text of the box
+                        boxs[i].innerHTML="Empty";
+
+                        // Remove Chest Image
+                        img_2[i].setAttribute("src","")
+
+                        // Make untouchable
+                        boxs[i].setAttribute("disabled","")
+
+                        // Change mouse cursor
+                        boxs[i].style.cursor="defult";
+
+                        // Reduce Number of Keys
+                        keys--;
+                    }
+        
+                    // Result screen when the keys are finished
+                    if (keys == 0) {
+                            // Adding the glass class
+                            finish_window.setAttribute("class","glass");
+
+                            // Make text visible
+                            sp16.style.display="block"
+
+                            // If the correct box is selected
+                            if (boxs[moneyed_box1].hasAttribute("disabled")) {
+                                // 1. If the treasure is correct, to the 1st li on the result screen.
+                                li1.innerHTML="You Won 10 Dollars";  
+                            } else {
+                                // 1. If the treasure is correct, to the 1st li on the result screen.
+                                li1.innerHTML="Nothing Won"; 
+                            }
+        
+                            // If the correct box is selected
+                            if (boxs[moneyed_box2].hasAttribute("disabled")) {
+                                // 2. If the treasure is correct, to the 2st li on the result screen.
+                                li2.innerHTML="You Won NFT";  
+                            } else {
+                                // 2. If the treasure is wrong, to the 2st li on the result screen.
+                                li2.innerHTML="Nothing Won"; 
+                            }
+        
+                            // If the correct box is selected
+                            if (boxs[moneyed_box3].hasAttribute("disabled")) {
+                                // 3. If the treasure is correct, to the 3st li on the result screen.
+                                li3.innerHTML="You Won 1.000 Coins"; 
+                            } else {
+                                // 3. If the treasure is correct, to the 3st li on the result screen.
+                                li3.innerHTML="Nothing Won"; 
+                            }
+                            
+                            if (boxs[moneyed_box1].hasAttribute("disabled") || boxs[moneyed_box2].hasAttribute("disabled") || boxs[moneyed_box3].hasAttribute("disabled")) {
+                                // If one of the 3 treasures is correct
+                                sp17.innerHTML="Won";
+
+                                // Change the content of the claim button
+                                claim.innerHTML="Claim Reward"
+                            } else {
+                                // If all 3 are wrong
+                                sp17.innerHTML="Lost";
+
+                                // Change the content of the claim button
+                                claim.innerHTML="Ok"
+                            }
+                        } 
+                    
+                    if (keys == 2) {
+                        // Change key image when clicking on treasure
+                        img3.setAttribute("src","./Images/unkey.jpg")
+                    } 
+                    if (keys == 1) {
+                        // Change key image when clicking on treasure
+                        img2.setAttribute("src","./Images/unkey.jpg")
+                    } 
+                    if (keys == 0) {
+                        // Change key image when clicking on treasure
+                        img1.setAttribute("src","./Images/unkey.jpg")
+                    }
+                })
             }
-
-            if (keys == 0) {
-                    finish_window.setAttribute("class","glass");
-                    sp16.style.display="block"
-                    if (boxs[moneyed_box1].hasAttribute("disabled")) {
-                        li1.innerHTML="Its True, You Won 10 Dollars";  
-                    } else {
-                        li1.innerHTML="Nothing Won"; 
-                    }
-
-                    if (boxs[moneyed_box2].hasAttribute("disabled")) {
-                        li2.innerHTML="Its True, You Won NFT";  
-                    } else {
-                        li2.innerHTML="Nothing Won"; 
-                    }
-
-                    if (boxs[moneyed_box3].hasAttribute("disabled")) {
-                        li3.innerHTML="Its True, You Won 1.000 Coins"; 
-                    } else {
-                        li3.innerHTML="Nothing Won"; 
-                    }
-
-                    if (boxs[moneyed_box1].hasAttribute("disabled") || boxs[moneyed_box2].hasAttribute("disabled") || boxs[moneyed_box3].hasAttribute("disabled")) {
-                        sp17.innerHTML="Won";
-                        start.innerHTML="Claim Reward"
-                    } else {
-                        sp17.innerHTML="Lost";
-                        start.innerHTML="Ok"
-                    }
-                }
-            
-            if (keys == 2) {
-                img3.setAttribute("src","C:/Users/DMC BİLGİSAYAR/Desktop/Codes/Code F/Images/unkey.jpg")
-            } 
-            if (keys == 1) {
-                img2.setAttribute("src","C:/Users/DMC BİLGİSAYAR/Desktop/Codes/Code F/Images/unkey.jpg")
-            } 
-            if (keys == 0) {
-                img1.setAttribute("src","C:/Users/DMC BİLGİSAYAR/Desktop/Codes/Code F/Images/unkey.jpg")
-            }
-        })
-    }
