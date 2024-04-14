@@ -155,6 +155,39 @@ body {
         display: none;
 }
 
+#connect-metamask {
+    outline: none;
+    border: 2px solid lightgray;
+    margin-right: 1000px;
+    position: absolute;
+    background: #3b3b3b;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    transition: 0.5s;
+}
+
+#connect-metamask:hover {
+    box-shadow: 0 0 20px 5px lightgray;
+}
+
+.wallet-text {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    margin-left: 830px;
+}
+
+
+#wallet-address {
+    margin-left: 1060px;
+}
+
+#connected-wallet {
+    font-weight: bolder;
+}
+
 #h1-2 {
     position: absolute;
     margin-bottom: 875px;
