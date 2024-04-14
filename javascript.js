@@ -6,23 +6,21 @@ let claim = document.querySelector("#claim");
 let connect_metamask = document.querySelector("#connect-metamask");
 
 let li1 = document.querySelector("#li1")
-// Number of keys
-let keys = 3;
-
 let img1 = document.querySelector("#img1");
 let img2 = document.querySelector("#img2");
 let img3 = document.querySelector("#img3");
 
+let keys = 3;
 let sp16 = document.querySelector("#sp16");
 let sp17 = document.querySelector("#sp17");
 
+// Determines treasure numbers
 let moneyed_box1 = Math.floor(Math.random() * 10);
 let moneyed_box3 = Math.floor(Math.random() * 10);
 let moneyed_box2 = Math.floor(Math.random() * 10);
 let finish_window = document.querySelector("#x");
 
-console.log(window.ethereum);
-// Determines treasure numbers
+// If the numbers are the same, to change
 window.onload = function () {
 
     while (moneyed_box1 == moneyed_box2 || moneyed_box1 == moneyed_box3 || moneyed_box2 == moneyed_box3) {
