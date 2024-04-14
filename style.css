@@ -155,7 +155,7 @@ body {
         display: none;
 }
 
-#connect-metamask {
+#connect-wallet {
     outline: none;
     border: 2px solid lightgray;
     margin-right: 1000px;
@@ -168,7 +168,7 @@ body {
     transition: 0.5s;
 }
 
-#connect-metamask:hover {
+#connect-wallet:hover {
     box-shadow: 0 0 20px 5px lightgray;
 }
 
@@ -176,16 +176,12 @@ body {
     color: white;
     font-weight: bold;
     position: absolute;
-    margin-left: 830px;
+    margin-left: 800px;
 }
-
 
 #wallet-address {
-    margin-left: 1060px;
-}
-
-#connected-wallet {
-    font-weight: bolder;
+    margin-left: 830px;
+    font-size: 17px;
 }
 
 #h1-2 {
